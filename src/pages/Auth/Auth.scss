@@ -1,0 +1,84 @@
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .block {
+    width: 430px;
+  }
+
+  &__top {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  &__title {
+    font-size: 28px;
+    line-height: 33px;
+    color: #202002;
+    margin: 0;
+    margin-bottom: 5px;
+  }
+
+  &__subtitle {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 21px;
+    letter-spacing: 0.13px;
+    opacity: 0.5;
+    margin: 0;
+  }
+
+  &__register-link {
+    text-align: center;
+    font-size: 16px;
+    line-height: 19px;
+    letter-spacing: 0.114286px;
+    color: #adadad;
+  }
+
+  .button {
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: 0.1px;
+    color: #ffffff;
+    width: 100%;
+  }
+
+  &__success {
+    &-block {
+      text-align: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    &-title {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 22px;
+      line-height: 25px;
+      margin: 15px 0;
+    }
+
+    &-text {
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 26px;
+      text-align: center;
+      letter-spacing: 0.1px;
+      opacity: 0.5;
+    }
+
+    &-icon {
+      svg {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  }
+}

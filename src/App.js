@@ -1,5 +1,13 @@
+import React from 'react';
+
+import { Auth } from 'pages';
+
 function App() {
-  return <div className="App">Hello App!</div>;
+  return (
+    <div className="wrapper">
+      <Auth />
+    </div>
+  );
 }
 
 export default App;
