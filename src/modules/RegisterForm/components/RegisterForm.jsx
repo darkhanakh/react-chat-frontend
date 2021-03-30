@@ -11,8 +11,17 @@ import {
 
 import { Button, Block } from 'components';
 
-const RegisterForm = () => {
-  const success = true;
+const RegisterForm = props => {
+  const success = false;
+
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
 
   return (
     <div>
@@ -24,14 +33,24 @@ const RegisterForm = () => {
       </div>
       <Block>
         {!success ? (
-          <Form className="login-form">
-            <Form.Item validateStatus="success" hasFeedback>
+          <Form className="login-form" onSubmitCapture={handleSubmit}>
+            <Form.Item
+              validateStatus={
+                !touched.email ? '' : errors.email ? 'error' : 'success'
+              }
+              hasFeedback
+              help={!touched.email ? '' : errors.email}
+            >
               <Input
+                id="email"
                 size="large"
                 placeholder="E-Mail"
                 prefix={
                   <MailOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />
                 }
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.email}
               />
             </Form.Item>
             <Form.Item>
@@ -44,14 +63,24 @@ const RegisterForm = () => {
                 }
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+              hasFeedback
+              validateStatus={
+                !touched.password ? '' : errors.password ? 'error' : 'success'
+              }
+              help={!touched.password ? '' : errors.password}
+            >
               <Input
+                id="password"
                 size="large"
                 type="password"
                 placeholder="Пароль"
                 prefix={
                   <LockOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />
                 }
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Form.Item>
             <Form.Item>
@@ -65,7 +94,7 @@ const RegisterForm = () => {
               />
             </Form.Item>
             <Form.Item>
-              <Button type="primary" size="large">
+              <Button type="primary" size="large" onClick={handleSubmit}>
                 Зарегистрироваться
               </Button>
             </Form.Item>

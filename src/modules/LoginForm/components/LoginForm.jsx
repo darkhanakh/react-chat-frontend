@@ -7,6 +7,10 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Block } from 'components';
 
 const LoginForm = () => {
+  const onFinish = values => {
+    console.log('Received values of form: ', values);
+  };
+
   return (
     <div>
       <div className="auth__top">
@@ -14,7 +18,7 @@ const LoginForm = () => {
         <p className="auth__subtitle">Пожалуйста, войдите в свой аккаунт</p>
       </div>
       <Block>
-        <Form className="login-form">
+        <Form className="login-form" onFinish={onFinish}>
           <Form.Item validateStatus="success" hasFeedback>
             <Input
               prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
