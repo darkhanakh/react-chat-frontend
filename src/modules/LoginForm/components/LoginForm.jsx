@@ -5,11 +5,23 @@ import { Form, Input } from 'antd';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 
 import { Button, Block } from 'components';
+import { validateField } from 'utils/helpers';
 
-const LoginForm = () => {
+const LoginForm = props => {
   const onFinish = values => {
     console.log('Received values of form: ', values);
   };
+
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    isSubmitting,
+    isValid,
+  } = props;
 
   return (
     <div>
@@ -18,24 +30,47 @@ const LoginForm = () => {
         <p className="auth__subtitle">Пожалуйста, войдите в свой аккаунт</p>
       </div>
       <Block>
-        <Form className="login-form" onFinish={onFinish}>
-          <Form.Item validateStatus="success" hasFeedback>
+        <Form
+          className="login-form"
+          onSubmitCapture={handleSubmit}
+          onFinish={onFinish}
+        >
+          <Form.Item
+            validateStatus={validateField('email', touched, errors)}
+            hasFeedback
+            help={!touched.email ? '' : errors.email}
+          >
             <Input
-              prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+              id="email"
               size="large"
+              type="email"
               placeholder="Логин"
+              prefix={<UserOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
             />
           </Form.Item>
-          <Form.Item>
+          <Form.Item
+            hasFeedback
+            validateStatus={validateField('password', touched, errors)}
+            help={!touched.password ? '' : errors.password}
+          >
             <Input
-              prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+              id="password"
               size="large"
               type="password"
               placeholder="Пароль"
+              prefix={<LockOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
           </Form.Item>
+
           <Form.Item>
-            <Button type="primary" size="large">
+            {isSubmitting && !isValid && <span>Ошибка</span>}
+            <Button type="primary" size="large" onClick={handleSubmit}>
               Войти в аккаунт
             </Button>
           </Form.Item>

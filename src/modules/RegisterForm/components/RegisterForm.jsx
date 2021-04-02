@@ -11,8 +11,14 @@ import {
 
 import { Button, Block } from 'components';
 
+import { validateField } from 'utils/helpers';
+
 const RegisterForm = props => {
   const success = false;
+
+  const onFinish = values => {
+    console.log('Received values of form: ', values);
+  };
 
   const {
     values,
@@ -33,11 +39,13 @@ const RegisterForm = props => {
       </div>
       <Block>
         {!success ? (
-          <Form className="login-form" onSubmitCapture={handleSubmit}>
+          <Form
+            className="login-form"
+            onSubmitCapture={handleSubmit}
+            onFinish={onFinish}
+          >
             <Form.Item
-              validateStatus={
-                !touched.email ? '' : errors.email ? 'error' : 'success'
-              }
+              validateStatus={validateField('email', touched, errors)}
               hasFeedback
               help={!touched.email ? '' : errors.email}
             >
@@ -53,21 +61,27 @@ const RegisterForm = props => {
                 value={values.email}
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+              validateStatus={validateField('name', touched, errors)}
+              hasFeedback
+              help={!touched.name ? '' : errors.name}
+            >
               <Input
+                id="name"
                 size="large"
-                type="password"
+                type="name"
                 placeholder="Ваше имя"
                 prefix={
                   <UserOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />
                 }
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.name}
               />
             </Form.Item>
             <Form.Item
               hasFeedback
-              validateStatus={
-                !touched.password ? '' : errors.password ? 'error' : 'success'
-              }
+              validateStatus={validateField('password', touched, errors)}
               help={!touched.password ? '' : errors.password}
             >
               <Input
@@ -83,14 +97,21 @@ const RegisterForm = props => {
                 onBlur={handleBlur}
               />
             </Form.Item>
-            <Form.Item>
+            <Form.Item
+              hasFeedback
+              validateStatus={validateField('password', touched, errors)}
+              help={!touched.password ? '' : errors.password}
+            >
               <Input
                 size="large"
-                type="password"
+                type="password2"
                 placeholder="Повторить пароль"
                 prefix={
                   <LockOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />
                 }
+                value={values.password2}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
             </Form.Item>
             <Form.Item>
