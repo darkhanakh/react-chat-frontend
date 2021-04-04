@@ -1,0 +1,111 @@
+@import '~scss/variables';
+
+.dialogs {
+  max-width: 300px;
+  &__item {
+    $item: &;
+    display: flex;
+    margin-bottom: 30px;
+    &-avatar {
+      position: relative;
+      flex: 0 0 40px;
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    &--online {
+      #{$item}-avatar {
+        &::before {
+          display: block;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          content: '';
+          background: $main-green;
+          border-radius: 50%;
+          border: 3px solid #ffffff;
+          width: 13px;
+          height: 13px;
+        }
+      }
+    }
+  }
+}
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  &__top {
+    display: flex;
+    align-items: center;
+  }
+
+  &__bottom {
+    position: relative;
+  }
+
+  &__name {
+    flex: 1;
+    color: $main-black;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    text-align: left;
+    margin-bottom: 6px;
+  }
+
+  &__date {
+    opacity: 0.4;
+    color: $main-black;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+    text-align: left;
+  }
+
+  &__text {
+    width: 220px;
+    opacity: 0.4;
+    color: $main-black;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    text-align: left;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+    height: 1.2em;
+    white-space: nowrap;
+  }
+
+  &__count {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    background: #f46b6b;
+    color: #fff;
+    font-weight: bold;
+    min-width: 18px;
+    max-width: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    text-align: center;
+    line-height: 17px;
+    box-shadow: 0 0 0px 3px #fff;
+  }
+
+  .message__icon-readed {
+    bottom: 3px;
+    left: auto;
+    right: 0;
+  }
+}
+
+// 2:16:04

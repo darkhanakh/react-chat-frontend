@@ -1,13 +1,40 @@
 import React from 'react';
 
-import { Message } from 'components';
+// eslint-disable-next-line no-unused-vars
+import { Message, DialogItem } from 'components';
 
 import './Home.scss';
 
 const Home = () => {
   return (
     <section className="home">
-      <Message
+      <div className="dialogs">
+        <DialogItem
+          user={{
+            fullname: 'Фёдор Достоевский',
+            isOnline: true,
+          }}
+          unreadedMessages={0}
+        />
+      </div>
+      <>
+        {/*  <Dialogs
+        items={[
+          {
+            user: {
+              fullname: 'Фёдор Достоевский',
+              avatar: null,
+            },
+            message: {
+              text:
+                'Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша',
+              isReaded: false,
+              createdAt: new Date(),
+            },
+          },
+        ]}
+      /> */}
+        {/*  <Message
         avatar="https://sun9-36.userapi.com/impg/j3gNl81hObaVdkUDnKdrEsHLQ1dGb6y4UO541g/r9v5j5ksw3w.jpg?size=1926x1170&quality=96&sign=4b9bf023224fcb8ebb9f7afadf0a93c8&type=album"
         text="Мы тут недавно войска Ариовиста разбили, чуваки хотели закрепиться на галльских землях, лол 🌝"
         date="Tue Mar 30 2021 21:16:33 GMT+0600"
@@ -33,6 +60,20 @@ const Home = () => {
         isMe
         isReaded
       />
+      <Message
+        avatar="https://sun9-36.userapi.com/impg/j3gNl81hObaVdkUDnKdrEsHLQ1dGb6y4UO541g/r9v5j5ksw3w.jpg?size=1926x1170&quality=96&sign=4b9bf023224fcb8ebb9f7afadf0a93c8&type=album"
+        attachments={[
+          {
+            filename: 'image.jpg',
+            url: 'https://source.unsplash.com/100x100/?random-4&nature,water',
+          },
+        ]}
+      />
+      <Message
+        avatar="https://sun9-36.userapi.com/impg/j3gNl81hObaVdkUDnKdrEsHLQ1dGb6y4UO541g/r9v5j5ksw3w.jpg?size=1926x1170&quality=96&sign=4b9bf023224fcb8ebb9f7afadf0a93c8&type=album"
+        isTyping
+      /> */}
+      </>
     </section>
   );
 };
