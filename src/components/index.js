@@ -4,3 +4,4 @@ export { default as Message } from './Message';
 export { default as DialogItem } from './DialogItem';
 export { default as Time } from './Time';
 export { default as CheckedIcon } from './CheckedIcon';
+export { default as Dialogs } from './Dialogs';

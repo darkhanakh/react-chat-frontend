@@ -69,6 +69,34 @@
     }
   }
 
+  &__typing {
+    span {
+      height: 8px;
+      width: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      @each $frame, $i,
+        $duration
+          in (
+            (typingAnimationOne, 1),
+            (typingAnimationTwo, 2),
+            (typingAnimationThree, 3)
+          )
+      {
+        &:nth-of-type(#{$i}) {
+          animation: #{$frame} 1s ease-in-out infinite;
+          animation-direction: normal;
+        }
+      }
+    }
+  }
+
   &--is-me {
     display: flex;
     flex-direction: row-reverse;
@@ -133,30 +161,53 @@
     }
   }
 
-  &__typing {
-    span {
-      height: 8px;
-      width: 8px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 8px;
+  &--audio {
+    audio {
+      display: none;
+    }
 
-      &:last-of-type {
-        margin-right: 0;
+    #{$self}__bubble {
+      width: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #{$self}__audio {
+      &-overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #418fff;
+        transition: width 0.5s linear;
       }
 
-      @each $frame, $i,
-        $duration
-          in (
-            (typingAnimationOne, 1),
-            (typingAnimationTwo, 2),
-            (typingAnimationThree, 3)
-          )
-      {
-        &:nth-of-type(#{$i}) {
-          animation: #{$frame} 1s ease-in-out infinite;
-          animation-direction: normal;
+      &-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+      }
+
+      &-button {
+        width: 28px;
+        height: 28px;
+        background-color: #0f3997;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+
+        &-icon {
+          height: 13px;
         }
+      }
+
+      &-duration {
+        opacity: 0.5;
+        color: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 14px;
       }
     }
   }

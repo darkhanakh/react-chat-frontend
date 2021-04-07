@@ -4,15 +4,20 @@ import checkedSvg from 'assets/image/checked.svg';
 import notCheckedSvg from 'assets/image/not_checked.svg';
 
 const CheckedIcon = ({ isMe, isReaded }) =>
-  isMe &&
-  (isReaded ? (
-    <img src={checkedSvg} alt="checked" className="message__icon-readed" />
-  ) : (
-    <img
-      src={notCheckedSvg}
-      alt="not checked"
-      className="message__icon-readed message__icon-readed--not"
-    />
-  ));
+  (isMe &&
+    (isReaded ? (
+      <img
+        className="message__icon-readed"
+        src={checkedSvg}
+        alt="Readed icon"
+      />
+    ) : (
+      <img
+        className="message__icon-readed message__icon-readed--no"
+        src={notCheckedSvg}
+        alt="No readed icon"
+      />
+    ))) ||
+  null;
 
 export default CheckedIcon;
