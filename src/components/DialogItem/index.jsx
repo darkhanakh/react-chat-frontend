@@ -1,34 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
 
-import { CheckedIcon } from 'components';
-
+import { CheckedIcon, Avatar } from 'components';
+import { getMessageTime } from 'utils/helpers';
 import './DialogItem.scss';
 
-const getMessageTime = createdAt =>
-  isToday(new Date(createdAt))
-    ? format(new Date(createdAt), 'HH:mm')
-    : format(new Date(createdAt), 'dd.MM.yyyy');
-
-const getAvatar = avatar => {
-  if (avatar) {
-    return <img src={avatar} alt="avatar" />;
-  } else {
-    // make avatar
-  }
-};
-
 const DialogItem = ({ user, unreadMessages, isMe, createdAt, text }) => {
+  console.log('user: ', user);
   return (
     <div
       className={classNames('dialogs__item', {
         'dialogs__item--online': user.isOnline,
       })}
     >
-      <div className="dialogs__item-avatar">{getAvatar(user.avatar)}</div>
+      <div className="dialogs__item-avatar">
+        <Avatar user={user} />
+      </div>
       <div className="dialogs__item-info info">
         <div className="info__top">
           <b className="info__name">{user.fullname}</b>

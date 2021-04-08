@@ -19,10 +19,9 @@ const Home = () => {
               'Мы все свидетельствуем Вам глубочайшее наше почтение и целуем Ваши ручки, дражайший папенька: Михайла, Федор, Варвара и Андрюша',
             createdAt: 'Mon Apr 03 2021 11:34:09 GMT+0600',
             user: {
-              _id: 1,
+              _id: 'e7e4479b0f2cb2b86b2c866d66bfd8fa',
               fullname: 'Фёдор Достоевский',
-              avatar:
-                'https://sun9-36.userapi.com/impg/j3gNl81hObaVdkUDnKdrEsHLQ1dGb6y4UO541g/r9v5j5ksw3w.jpg?size=1926x1170&quality=96&sign=4b9bf023224fcb8ebb9f7afadf0a93c8&type=album',
+              avatar: null,
             },
           },
           {
@@ -30,10 +29,9 @@ const Home = () => {
             text: 'Привет! Как твои дела?',
             createdAt: 'Mon Apr 05 2021 11:34:09 GMT+0600',
             user: {
-              _id: 2,
+              _id: '114ea7e9342bff5890fc80c2615d83c3',
               fullname: 'Алан Тьюринг',
-              avatar:
-                'http://1.bp.blogspot.com/-rodUwJba9_I/T-7_B6W6vlI/AAAAAAAAAS4/IaaojCBxEQw/s1600/image002.jpg',
+              avatar: null,
             },
           },
         ]}
