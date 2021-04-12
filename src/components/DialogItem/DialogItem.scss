@@ -1,7 +1,12 @@
 @import '~scss/variables';
 
 .dialogs {
-  max-width: 300px;
+  &__search {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+  }
+
   &__item {
     $item: &;
     display: flex;

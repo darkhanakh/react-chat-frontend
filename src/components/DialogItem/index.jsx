@@ -6,8 +6,7 @@ import { CheckedIcon, Avatar } from 'components';
 import { getMessageTime } from 'utils/helpers';
 import './DialogItem.scss';
 
-const DialogItem = ({ user, unreadMessages, isMe, createdAt, text }) => {
-  console.log('user: ', user);
+const DialogItem = ({ user, unreadMessages, isMe, created_at, text }) => {
   return (
     <div
       className={classNames('dialogs__item', {
@@ -20,7 +19,7 @@ const DialogItem = ({ user, unreadMessages, isMe, createdAt, text }) => {
       <div className="dialogs__item-info info">
         <div className="info__top">
           <b className="info__name">{user.fullname}</b>
-          <time className="info__date">{getMessageTime(createdAt)}</time>
+          <time className="info__date">{getMessageTime(created_at)}</time>
         </div>
         <div className="info__bottom">
           <p className="info__text">{text}</p>

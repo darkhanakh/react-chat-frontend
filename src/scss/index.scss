@@ -2,6 +2,9 @@
 @import 'antd/dist/antd.css';
 @import '~normalize.css';
 
+@import './variables';
+@import './layouts/chat';
+
 *,
 *::before,
 *::after {
@@ -20,6 +23,7 @@ html,
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 14px;
+  background-color: #f4f7fd;
 }
 
 @for $i from 0 through 6 {
@@ -32,4 +36,19 @@ body {
 p {
   margin: 0;
   padding: 0;
+}
+
+.ant-btn-circle {
+  border: 0;
+  box-shadow: none;
+  color: #202020 !important;
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:after {
+    display: none;
+  }
 }

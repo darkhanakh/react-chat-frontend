@@ -6,7 +6,7 @@
   &__content {
     display: flex;
     max-width: 440px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
   }
 
@@ -190,6 +190,9 @@
       }
 
       &-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 28px;
         height: 28px;
         background-color: #0f3997;

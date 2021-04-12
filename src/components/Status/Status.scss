@@ -1,0 +1,32 @@
+@import '~scss/variables';
+
+.status {
+  position: relative;
+  font-size: 14px;
+  line-height: 16px;
+  color: rgba(32, 32, 32, 0.3);
+  &::before {
+    top: 6px;
+    left: -8px;
+    width: 6px;
+    height: 6px;
+    content: '';
+    display: block;
+    position: absolute;
+    background: #d3d3d3;
+    border-radius: 50%;
+  }
+  &--online {
+    &::before {
+      top: 6px;
+      left: -8px;
+      width: 6px;
+      height: 6px;
+      content: '';
+      display: block;
+      position: absolute;
+      background: $main-green;
+      border-radius: 50%;
+    }
+  }
+}
