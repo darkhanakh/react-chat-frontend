@@ -1,16 +1,15 @@
-import LoginForm from './../components/LoginForm';
-
 import { withFormik } from 'formik';
 
+import LoginForm from './../components/LoginForm';
 import validateForm from 'utils/validate';
+import { userActions } from 'store/actions';
+import store from 'store';
 
 export default withFormik({
   enableReinitialize: true,
   mapPropsToValues: () => ({
     email: '',
-    fullname: '',
     password: '',
-    password2: '',
   }),
   validate: values => {
     let errors = {};
@@ -19,11 +18,13 @@ export default withFormik({
 
     return errors;
   },
-  handleSubmit: (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
+  handleSubmit: (values, { setSubmitting, props }) => {
+    store.dispatch(userActions.fetchUserLogin(values)).then(({ status }) => {
+      if (status === 'success') {
+        setTimeout(() => props.history.push('/'), 3000);
+      }
       setSubmitting(false);
-    }, 1000);
+    });
   },
   displayName: 'LoginForm',
 })(LoginForm);
