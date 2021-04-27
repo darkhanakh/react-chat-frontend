@@ -6,12 +6,23 @@ import { CheckedIcon, Avatar } from 'components';
 import { getMessageTime } from 'utils/helpers';
 import './DialogItem.scss';
 
-const DialogItem = ({ user, unreadMessages, isMe, created_at, text }) => {
+const DialogItem = ({
+  _id,
+  user,
+  unreadMessages,
+  isMe,
+  created_at,
+  text,
+  onSelectDialog,
+  currentDialogId,
+}) => {
   return (
     <div
       className={classNames('dialogs__item', {
         'dialogs__item--online': user.isOnline,
+        'dialogs__item--selected': currentDialogId === _id,
       })}
+      onClick={onSelectDialog.bind(this, _id)}
     >
       <div className="dialogs__item-avatar">
         <Avatar user={user} />

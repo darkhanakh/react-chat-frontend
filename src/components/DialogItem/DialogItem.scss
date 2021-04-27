@@ -24,6 +24,28 @@
       }
     }
 
+    &--selected,
+    &--selected:hover {
+      background-color: #1890ff !important;
+
+      .info {
+        &__name {
+          color: #fff;
+        }
+        &__text {
+          color: #fff;
+        }
+        time {
+          color: #fff;
+        }
+      }
+    }
+
+    &:hover,
+    &.active {
+      background-color: #f3f7ff;
+    }
+
     &--online {
       #{$item}-avatar {
         &::before {
@@ -67,7 +89,7 @@
   }
 
   &__date {
-    opacity: 0.4;
+    opacity: 0.7;
     color: $main-black;
     font-size: 12px;
     font-weight: 400;
@@ -77,7 +99,7 @@
 
   &__text {
     width: 220px;
-    opacity: 0.4;
+    opacity: 0.7;
     color: $main-black;
     font-size: 14px;
     font-weight: 400;
@@ -112,5 +134,3 @@
     right: 0;
   }
 }
-
-// 2:16:04

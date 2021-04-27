@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Emoji } from 'emoji-mart';
 
 import './Message.scss';
 import MessageAudio from './MessageAudio';
-import { Time, CheckedIcon } from 'components';
+import { Time, CheckedIcon, Avatar } from 'components';
 
 const Message = ({
   text,
-  avatar,
   date,
   user,
   isMe,
@@ -30,12 +30,16 @@ const Message = ({
         <CheckedIcon isMe={isMe} isReaded={isReaded} />
 
         <div className="message__avatar">
-          <img src={avatar} alt={`Avatar ${user.fullName}`} />
+          <Avatar user={user} />
         </div>
         <div className="message__info">
           {(audio || text || isTyping) && (
             <div className="message__bubble">
-              {text && <p className="message__text">{text}</p>}
+              {text && (
+                <p className="message__text">
+                  <Emoji emoji=":santa::skin-tone-3:" set="apple" size={16} />
+                </p>
+              )}
               {isTyping && (
                 <p className="message__typing">
                   <span></span>

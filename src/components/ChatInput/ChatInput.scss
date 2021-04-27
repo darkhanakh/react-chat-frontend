@@ -16,6 +16,12 @@
     }
   }
 
+  &__emoji-picker {
+    position: absolute;
+    bottom: 50px;
+    z-index: 1;
+  }
+
   &__actions {
     display: flex;
     align-items: center;

@@ -15,7 +15,7 @@
       padding: 21px;
       height: 60px;
       border-bottom: 1px solid #f7f7f7;
-      margin-bottom: 20px;
+
       align-items: center;
 
       &-text {
@@ -41,11 +41,6 @@
           cursor: pointer;
           margin-bottom: 0;
           transition: background-color 0.3s ease;
-
-          &:hover,
-          &.active {
-            background-color: #f3f7ff;
-          }
         }
       }
     }
@@ -85,9 +80,6 @@
       }
     }
     &-messages {
-      padding: 20px;
-      padding-bottom: 0;
-      overflow: auto;
       height: calc(100% - 138px);
     }
   }
