@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Popover, Button } from 'antd';
 // import { Emoji } from 'emoji-mart';
 
 import { Time, CheckedIcon, Avatar, MessageAudio } from 'components';
@@ -15,6 +16,7 @@ const Message = ({
   attachments,
   isTyping,
   audio,
+  onRemoveMessage,
 }) => {
   return (
     <div
@@ -27,6 +29,19 @@ const Message = ({
     >
       <div className="message__content">
         <CheckedIcon isMe={isMe} isReaded={isReaded} />
+
+        <Popover
+          content={
+            <div>
+              <Button onClick={onRemoveMessage}>Удалить сообщение</Button>
+            </div>
+          }
+          trigger="click"
+        >
+          <div className="message__icon-actions">
+            <Button type="link" shape="circle" icon="ellipsis" />
+          </div>
+        </Popover>
 
         <div className="message__avatar">
           <Avatar user={user} />

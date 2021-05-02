@@ -6,4 +6,5 @@ export default {
   signUp: postData => axios.post('/user/signup', postData),
   verifyHash: hash => axios.get(`/user/verify?hash=${hash}`),
   getMe: () => axios.get('/user/me'),
+  findUser: name => console.log(name) || axios.get(`/user/find?q=${name}`),
 };

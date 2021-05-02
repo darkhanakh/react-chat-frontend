@@ -8,7 +8,7 @@ import { Message } from 'components';
 
 import './Messages.scss';
 
-const Messages = ({ items, isLoading, blockRef, user }) => {
+const Messages = ({ items, isLoading, blockRef, user, onRemoveMessage }) => {
   return (
     <div
       ref={blockRef}
@@ -24,6 +24,7 @@ const Messages = ({ items, isLoading, blockRef, user }) => {
                 {...item}
                 key={item._id}
                 isMe={user.data._id === item.user._id}
+                onRemoveMessage={onRemoveMessage.bind(this, item._id)}
               />
             ))
           ) : (

@@ -7,6 +7,10 @@ const Actions = {
     type: types['USER:SET_DATA'],
     payload: data,
   }),
+  setIsAuth: bool => ({
+    type: 'USER:SET_IS_AUTH',
+    payload: bool,
+  }),
   fetchUserLogin: postData => dispatch => {
     return userApi
       .signIn(postData)
@@ -23,6 +27,7 @@ const Actions = {
         localStorage.setItem('token', token);
 
         dispatch(Actions.fetchUserData());
+        dispatch(Actions.setIsAuth(true));
         return data;
       })
       .catch(({ response }) => {
@@ -38,7 +43,15 @@ const Actions = {
   fetchUserRegister: postData => dispatch =>
     userApi.signUp(postData).then(({ data }) => data),
   fetchUserData: () => dispatch => {
-    userApi.getMe().then(({ data }) => dispatch(Actions.setUserData(data)));
+    userApi
+      .getMe()
+      .then(({ data }) => dispatch(Actions.setUserData(data)))
+      .catch(({ response }) => {
+        if (response.status === 403) {
+          dispatch(Actions.setIsAuth(false));
+          localStorage.removeItem('token');
+        }
+      });
   },
 };
 

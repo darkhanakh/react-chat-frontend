@@ -16,6 +16,11 @@ const ChatInput = ({ onSendMessage, currentDialogId }) => {
     }
   };
 
+  const handleInputClick = e => {
+    onSendMessage(text, currentDialogId);
+    setText('');
+  };
+
   return (
     <div className="chat-input">
       <div className="chat-input__smile-button">
@@ -54,7 +59,13 @@ const ChatInput = ({ onSendMessage, currentDialogId }) => {
         </UploadField>
 
         {text ? (
-          <Button type="link" shape="circle" icon="check-circle" size="large" />
+          <Button
+            type="link"
+            shape="circle"
+            icon="check-circle"
+            size="large"
+            onClick={handleInputClick}
+          />
         ) : (
           <Button type="link" shape="circle" icon="audio" size="large" />
         )}

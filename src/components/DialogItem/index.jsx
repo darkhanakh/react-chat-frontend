@@ -14,7 +14,6 @@ const DialogItem = ({
   currentDialogId,
   lastMessage,
   onSelectDialog,
-  author,
 }) => {
   return (
     <React.Fragment>
@@ -27,11 +26,11 @@ const DialogItem = ({
           onClick={onSelectDialog.bind(this, _id)}
         >
           <div className="dialogs__item-avatar">
-            <Avatar user={author} />
+            <Avatar user={lastMessage.user} />
           </div>
           <div className="dialogs__item-info info">
             <div className="info__top">
-              <b className="info__name">{author.fullname}</b>
+              <b className="info__name">{lastMessage.user.fullname}</b>
               <time className="info__date">
                 {getMessageTime(lastMessage.createdAt)}
               </time>

@@ -25,9 +25,7 @@ export default withFormik({
       .dispatch(userActions.fetchUserRegister(values))
       .then(({ status }) => {
         if (status === 'success') {
-          setTimeout(() => {
-            props.history.push('/');
-          }, 50);
+          props.history.push('/');
         }
         setSubmitting(false);
       })

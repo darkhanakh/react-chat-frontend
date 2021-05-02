@@ -32,7 +32,6 @@ const Dialogs = ({
       setFiltredItems(items);
     }
     socket.on('SERVER:DIALOG_CREATED', data => {
-      console.log('data: ', data);
       fetchAllDialogs();
     });
   }, [fetchAllDialogs, items]);

@@ -1,25 +1,14 @@
 import React from 'react';
-import { Button, Icon } from 'antd';
+import { Button } from 'antd';
 
-import { Dialogs, Messages, ChatInput, Status } from 'containers';
+import { Messages, ChatInput, Status, Sidebar } from 'containers';
 import './Home.scss';
 
 const Home = () => {
   return (
     <section className="home">
       <div className="chat">
-        <aside className="chat__sidebar">
-          <header className="chat__sidebar-header">
-            <div className="chat__sidebar-header-group">
-              <Icon type="team" style={{ fontSize: '16px' }} />
-              <span className="chat__sidebar-header-text">Список диалогов</span>
-            </div>
-            <Button type="link" shape="circle" icon="form" />
-          </header>
-          <div className="chat__sidebar-dialogs">
-            <Dialogs userId={0} />
-          </div>
-        </aside>
+        <Sidebar />
         <div className="chat__dialog">
           <header className="chat__dialog-header">
             <div />

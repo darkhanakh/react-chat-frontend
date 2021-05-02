@@ -35,6 +35,19 @@ const actions = {
   },
   fetchSendMessage: (text, dialogId) => dispatch =>
     messagesApi.send(text, dialogId),
+  removeMessageById: id => dispatch => {
+    messagesApi
+      .removeById(id)
+      .then(({ data }) => {
+        dispatch({
+          type: 'MESSAGES:REMOVE_MESSAGE',
+          payload: id,
+        });
+      })
+      .catch(() => {
+        dispatch(actions.setIsLoading(false));
+      });
+  },
 };
 
 export default actions;
