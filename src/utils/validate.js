@@ -9,6 +9,12 @@ export default ({ isAuth, values, errors }) => {
       }
     },
 
+    fullname: value => {
+      if (!isAuth && !value) {
+        errors.fullname = 'Укажите свое имя и фамилию';
+      }
+    },
+
     password: value => {
       if (!value) {
         errors.password = 'Введите пароль';
@@ -20,16 +26,11 @@ export default ({ isAuth, values, errors }) => {
       }
     },
 
-    name: value => {
-      if (!value) {
-        errors.name = 'Введите имя';
-      } else if (
-        !/^[a-z\u00C0-\u02AB'´`]+\.?\s([a-z\u00C0-\u02AB'´`]+\.?\s?)+$/i.test(
-          value
-        ) &&
-        !value
-      ) {
-        errors.name = 'Введите корректное имя';
+    password_2: value => {
+      if (!isAuth && value !== values.password) {
+        errors.password_2 = 'Пароли не совпадают';
+      } else if (value === '') {
+        errors.password_2 = 'Введите пароль';
       }
     },
   };

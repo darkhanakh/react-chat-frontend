@@ -8,10 +8,6 @@ import { Button, Block } from 'components';
 import { validateField } from 'utils/helpers';
 
 const LoginForm = props => {
-  const onFinish = values => {
-    console.log('Received values of form: ', values);
-  };
-
   const {
     values,
     touched,
@@ -30,11 +26,7 @@ const LoginForm = props => {
         <p className="auth__subtitle">Пожалуйста, войдите в свой аккаунт</p>
       </div>
       <Block>
-        <Form
-          className="login-form"
-          onSubmitCapture={handleSubmit}
-          onFinish={onFinish}
-        >
+        <Form className="login-form" onSubmitCapture={handleSubmit}>
           <Form.Item
             validateStatus={validateField('email', touched, errors)}
             hasFeedback
@@ -79,7 +71,7 @@ const LoginForm = props => {
               Войти в аккаунт
             </Button>
           </Form.Item>
-          <Link to="/register" className="auth__register-link">
+          <Link to="/signup" className="auth__register-link">
             Зарегистрироваться
           </Link>
         </Form>

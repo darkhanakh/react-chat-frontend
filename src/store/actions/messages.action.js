@@ -6,6 +6,17 @@ const actions = {
     type: types['MESSAGES:SET_ITEMS'],
     payload: items,
   }),
+  addMessage: message => (dispatch, getState) => {
+    const { dialogs } = getState();
+    const { currentDialogId } = dialogs;
+
+    if (currentDialogId === message.dialog._id) {
+      dispatch({
+        type: 'MESSAGE:ADD_MESSAGE',
+        payload: message,
+      });
+    }
+  },
   setIsLoading: bool => ({
     type: types['MESSAGES:SET_IS_LOADING'],
     payload: bool,
@@ -18,10 +29,12 @@ const actions = {
       .then(({ data }) => {
         dispatch(actions.setMessages(data));
       })
-      .catch(e => {
+      .catch(() => {
         dispatch(actions.setIsLoading(false));
       });
   },
+  fetchSendMessage: (text, dialogId) => dispatch =>
+    messagesApi.send(text, dialogId),
 };
 
 export default actions;

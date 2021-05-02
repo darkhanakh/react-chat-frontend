@@ -8,30 +8,35 @@ const Actions = {
     payload: data,
   }),
   fetchUserLogin: postData => dispatch => {
-    return userApi.login(postData).then(({ data }) => {
-      const { status, token } = data;
+    return userApi
+      .signIn(postData)
+      .then(({ data }) => {
+        const { token } = data;
 
-      if (status === 'error') {
         openNotification({
-          text: 'Неверный логин или пароль',
-          type: 'error',
-          title: 'Ошибка при авторизации',
-        });
-      } else {
-        openNotification({
-          text: 'Авторизация прошла успешно!',
-          type: 'success',
           title: 'Отлично!',
+          text: 'Авторизация успешна.',
+          type: 'success',
         });
+
         window.axios.defaults.headers.common['token'] = token;
-
         localStorage.setItem('token', token);
-        dispatch(Actions.fetchUserData());
-      }
 
-      return data;
-    });
+        dispatch(Actions.fetchUserData());
+        return data;
+      })
+      .catch(({ response }) => {
+        if (response.status === 422) {
+          openNotification({
+            title: 'Ошибка при авторизации',
+            text: 'Неверный логин или пароль',
+            type: 'error',
+          });
+        }
+      });
   },
+  fetchUserRegister: postData => dispatch =>
+    userApi.signUp(postData).then(({ data }) => data),
   fetchUserData: () => dispatch => {
     userApi.getMe().then(({ data }) => dispatch(Actions.setUserData(data)));
   },

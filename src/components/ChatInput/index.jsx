@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
 import { Input, Button } from 'antd';
-import {
-  SmileOutlined,
-  CameraOutlined,
-  AudioOutlined,
-  SendOutlined,
-} from '@ant-design/icons';
 import { UploadField } from '@navjobs/upload';
 import { Picker } from 'emoji-mart';
 
 import './ChatInput.scss';
 
-const ChatInput = () => {
+const ChatInput = ({ onSendMessage, currentDialogId }) => {
   const [text, setText] = useState('');
   const [isEmojiVisible, setIsEmojiVisible] = useState(false);
+
+  const handleKeyUp = e => {
+    if (e.key === 'Enter') {
+      onSendMessage(text, currentDialogId);
+      setText('');
+    }
+  };
 
   return (
     <div className="chat-input">
@@ -26,7 +27,8 @@ const ChatInput = () => {
         <Button
           type="link"
           shape="circle"
-          icon={<SmileOutlined style={{ color: '#b4b4b4' }} />}
+          icon="smile"
+          size="large"
           onClick={() => setIsEmojiVisible(!isEmojiVisible)}
         />
       </div>
@@ -34,6 +36,8 @@ const ChatInput = () => {
         placeholder="Введите текст сообщения…"
         size="large"
         onChange={e => setText(e.target.value)}
+        onKeyUp={handleKeyUp}
+        value={text}
       />
       <div className="chat-input__actions">
         <UploadField
@@ -46,25 +50,13 @@ const ChatInput = () => {
             multiple: 'multiple',
           }}
         >
-          <Button
-            type="link"
-            shape="circle"
-            icon={<CameraOutlined style={{ color: '#b4b4b4' }} />}
-          />
+          <Button type="link" shape="circle" icon="camera" size="large" />
         </UploadField>
 
         {text ? (
-          <Button
-            type="link"
-            shape="circle"
-            icon={<SendOutlined style={{ color: '#b4b4b4' }} />}
-          />
+          <Button type="link" shape="circle" icon="check-circle" size="large" />
         ) : (
-          <Button
-            type="link"
-            shape="circle"
-            icon={<AudioOutlined style={{ color: '#b4b4b4' }} />}
-          />
+          <Button type="link" shape="circle" icon="audio" size="large" />
         )}
       </div>
     </div>
@@ -72,3 +64,4 @@ const ChatInput = () => {
 };
 
 export default ChatInput;
+/* 1:21:51 */

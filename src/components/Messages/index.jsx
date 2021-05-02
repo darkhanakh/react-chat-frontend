@@ -8,7 +8,7 @@ import { Message } from 'components';
 
 import './Messages.scss';
 
-const Messages = ({ items, isLoading, blockRef }) => {
+const Messages = ({ items, isLoading, blockRef, user }) => {
   return (
     <div
       ref={blockRef}
@@ -19,7 +19,13 @@ const Messages = ({ items, isLoading, blockRef }) => {
       ) : items && !isLoading ? (
         <div>
           {items.length > 0 ? (
-            items.map(item => <Message {...item} key={item._id} />)
+            items.map(item => (
+              <Message
+                {...item}
+                key={item._id}
+                isMe={user.data._id === item.user._id}
+              />
+            ))
           ) : (
             <div className="message-empty">
               <Empty description="Диалог пуст" />

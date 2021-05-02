@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Emoji } from 'emoji-mart';
+// import { Emoji } from 'emoji-mart';
 
+import { Time, CheckedIcon, Avatar, MessageAudio } from 'components';
 import './Message.scss';
-import MessageAudio from './MessageAudio';
-import { Time, CheckedIcon, Avatar } from 'components';
 
 const Message = ({
   text,
@@ -35,11 +34,7 @@ const Message = ({
         <div className="message__info">
           {(audio || text || isTyping) && (
             <div className="message__bubble">
-              {text && (
-                <p className="message__text">
-                  <Emoji emoji=":santa::skin-tone-3:" set="apple" size={16} />
-                </p>
-              )}
+              {text && <p className="message__text">{text}</p>}
               {isTyping && (
                 <p className="message__typing">
                   <span></span>

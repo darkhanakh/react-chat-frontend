@@ -1,13 +1,7 @@
 import React from 'react';
-import {
-  TeamOutlined,
-  FormOutlined,
-  EllipsisOutlined,
-} from '@ant-design/icons';
-import { Button } from 'antd';
+import { Button, Icon } from 'antd';
 
-import { Status, ChatInput } from 'components';
-import { Dialogs, Messages } from 'containers';
+import { Dialogs, Messages, ChatInput, Status } from 'containers';
 import './Home.scss';
 
 const Home = () => {
@@ -17,16 +11,10 @@ const Home = () => {
         <aside className="chat__sidebar">
           <header className="chat__sidebar-header">
             <div className="chat__sidebar-header-group">
-              <TeamOutlined style={{ fontSize: '18px' }} />
+              <Icon type="team" style={{ fontSize: '16px' }} />
               <span className="chat__sidebar-header-text">Список диалогов</span>
             </div>
-            <Button
-              type="link"
-              shape="circle"
-              icon={
-                <FormOutlined style={{ fontSize: '18px', cursor: 'pointer' }} />
-              }
-            />
+            <Button type="link" shape="circle" icon="form" />
           </header>
           <div className="chat__sidebar-dialogs">
             <Dialogs userId={0} />
@@ -34,22 +22,9 @@ const Home = () => {
         </aside>
         <div className="chat__dialog">
           <header className="chat__dialog-header">
-            <div></div>
-            <div className="chat__dialog-header-center">
-              <b className="chat__dialog-header-username">Гай Юлий Цезарь</b>
-              <div className="chat__dialog-header-status">
-                <Status isOnline />
-              </div>
-            </div>
-            <Button
-              type="link"
-              shape="circle"
-              icon={
-                <EllipsisOutlined
-                  style={{ fontSize: '21px', cursor: 'pointer' }}
-                />
-              }
-            />
+            <div />
+            <Status />
+            <Button type="link" shape="circle" icon="ellipsis" size="large" />
           </header>
           <div className="chat__dialog-messages">
             <Messages />

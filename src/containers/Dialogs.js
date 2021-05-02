@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import socket from 'core/socket';
 import { Dialogs as BaseDialogs } from 'components';
 import { dialogsActions } from 'store/actions';
 
@@ -18,7 +19,7 @@ const Dialogs = ({
     setFiltredItems(
       items.filter(
         dialog =>
-          dialog.user.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
+          dialog.author.fullname.toLowerCase().indexOf(value.toLowerCase()) >= 0
       )
     );
     setInputValue(value);
@@ -30,7 +31,11 @@ const Dialogs = ({
     } else {
       setFiltredItems(items);
     }
-  }, [items, fetchAllDialogs]);
+    socket.on('SERVER:DIALOG_CREATED', data => {
+      console.log('data: ', data);
+      fetchAllDialogs();
+    });
+  }, [fetchAllDialogs, items]);
 
   return (
     <BaseDialogs
@@ -38,8 +43,8 @@ const Dialogs = ({
       items={filtred}
       onSearch={onChangeHandler}
       inputValue={inputValue}
-      onSelectDialog={setCurrentDialogId}
       currentDialogId={currentDialogId}
+      onSelectDialog={setCurrentDialogId}
     />
   );
 };
