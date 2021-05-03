@@ -70,6 +70,7 @@
     "react-refresh": "^0.8.3",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-string-replace": "^0.4.4",
     "react-styleguidist": "^11.1.6",
     "redux-thunk": "^2.3.0",
     "resolve": "1.18.1",

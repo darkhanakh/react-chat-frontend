@@ -36,17 +36,19 @@ const actions = {
   fetchSendMessage: (text, dialogId) => dispatch =>
     messagesApi.send(text, dialogId),
   removeMessageById: id => dispatch => {
-    messagesApi
-      .removeById(id)
-      .then(({ data }) => {
-        dispatch({
-          type: 'MESSAGES:REMOVE_MESSAGE',
-          payload: id,
+    if (window.confirm('Вы действительно хотите удалить сообщения?')) {
+      messagesApi
+        .removeById(id)
+        .then(({ data }) => {
+          dispatch({
+            type: 'MESSAGES:REMOVE_MESSAGE',
+            payload: id,
+          });
+        })
+        .catch(() => {
+          dispatch(actions.setIsLoading(false));
         });
-      })
-      .catch(() => {
-        dispatch(actions.setIsLoading(false));
-      });
+    }
   },
 };
 

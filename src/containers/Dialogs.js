@@ -31,9 +31,13 @@ const Dialogs = ({
     } else {
       setFiltredItems(items);
     }
-    socket.on('SERVER:DIALOG_CREATED', data => {
-      fetchAllDialogs();
-    });
+    socket.on('SERVER:DIALOG_CREATED', fetchAllDialogs);
+    socket.on('SERVER:NEW_MESSAGE', fetchAllDialogs);
+
+    return () => {
+      socket.removeListener('SERVER:DIALOG_CREATED', fetchAllDialogs);
+      socket.removeListener('SERVER:NEW_MESSAGE', fetchAllDialogs);
+    };
   }, [fetchAllDialogs, items]);
 
   return (

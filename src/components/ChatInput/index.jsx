@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input, Button } from 'antd';
 import { UploadField } from '@navjobs/upload';
 import { Picker } from 'emoji-mart';
@@ -21,14 +21,33 @@ const ChatInput = ({ onSendMessage, currentDialogId }) => {
     setText('');
   };
 
+  const addEmojiToText = emojiObj => {
+    setText((text + '  ' + emojiObj.colons).trim());
+  };
+
+  const handleEmojiOutsideClick = (el, e) => {
+    if (el && !el.contains(e.target)) {
+      setIsEmojiVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    const el = document.querySelector('.chat-input__smile-button');
+    document.addEventListener('click', handleEmojiOutsideClick.bind(this, el));
+    return () => {
+      document.removeEventListener(
+        'click',
+        handleEmojiOutsideClick.bind(this, el)
+      );
+    };
+  }, []);
+
   return (
     <div className="chat-input">
       <div className="chat-input__smile-button">
-        {isEmojiVisible && (
-          <div className="chat-input__emoji-picker">
-            <Picker set="apple" />
-          </div>
-        )}
+        <div className="chat-input__emoji-picker">
+          {isEmojiVisible && <Picker set="apple" onSelect={addEmojiToText} />}
+        </div>
         <Button
           type="link"
           shape="circle"
@@ -37,12 +56,13 @@ const ChatInput = ({ onSendMessage, currentDialogId }) => {
           onClick={() => setIsEmojiVisible(!isEmojiVisible)}
         />
       </div>
-      <Input
+      <Input.TextArea
         placeholder="Введите текст сообщения…"
         size="large"
         onChange={e => setText(e.target.value)}
         onKeyUp={handleKeyUp}
         value={text}
+        autoSize={{ maxRows: 6, minRows: 1 }}
       />
       <div className="chat-input__actions">
         <UploadField
@@ -75,4 +95,3 @@ const ChatInput = ({ onSendMessage, currentDialogId }) => {
 };
 
 export default ChatInput;
-/* 1:21:51 */

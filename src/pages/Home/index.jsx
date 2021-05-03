@@ -11,9 +11,7 @@ const Home = () => {
         <Sidebar />
         <div className="chat__dialog">
           <header className="chat__dialog-header">
-            <div />
             <Status />
-            <Button type="link" shape="circle" icon="ellipsis" size="large" />
           </header>
           <div className="chat__dialog-messages">
             <Messages />

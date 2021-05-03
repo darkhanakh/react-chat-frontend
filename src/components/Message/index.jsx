@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Popover, Button } from 'antd';
-// import { Emoji } from 'emoji-mart';
+import { Emoji } from 'emoji-mart';
+import reactStringReplace from 'react-string-replace';
 
 import { Time, CheckedIcon, Avatar, MessageAudio } from 'components';
 import './Message.scss';
@@ -49,7 +50,10 @@ const Message = ({
         <div className="message__info">
           {(audio || text || isTyping) && (
             <div className="message__bubble">
-              {text && <p className="message__text">{text}</p>}
+              {text &&
+                reactStringReplace(text, /:(.+?):/g, (match, i) => (
+                  <Emoji emoji={match} set="apple" size={16} key={i} />
+                ))}
               {isTyping && (
                 <p className="message__typing">
                   <span></span>

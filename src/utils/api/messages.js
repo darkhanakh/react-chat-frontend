@@ -9,5 +9,5 @@ export default {
       dialog_id: dialogId,
     });
   },
-  removeById: id => axios.delete(`/messages/${id}`),
+  removeById: id => axios.delete(`/messages/?id=${id}`),
 };

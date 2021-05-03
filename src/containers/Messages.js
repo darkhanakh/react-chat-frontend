@@ -38,7 +38,7 @@ const Messages = ({
     <BaseMessages
       user={user}
       items={items}
-      isLoading={isLoading}
+      isLoading={isLoading && !user.data}
       blockRef={messagesRef}
       onRemoveMessage={removeMessageById}
     />
