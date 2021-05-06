@@ -20,17 +20,19 @@ export default withFormik({
 
     return errors;
   },
-  handleSubmit: (values, { setSubmitting, props }) =>
-    store
-      .dispatch(userActions.fetchUserRegister(values))
-      .then(({ status }) => {
-        if (status === 'success') {
-          props.history.push('/');
-        }
-        setSubmitting(false);
-      })
-      .catch(() => {
-        setSubmitting(false);
-      }),
+  handleSubmit: async (values, { setSubmitting, props }) => {
+    try {
+      const { status } = await store.dispatch(
+        userActions.fetchUserRegister(values)
+      );
+
+      if (status === 'success') {
+        props.history.push('/');
+      }
+      setSubmitting(false);
+    } catch (e) {
+      setSubmitting(false);
+    }
+  },
   displayName: 'RegisterForm',
 })(RegisterForm);

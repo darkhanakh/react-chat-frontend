@@ -1,31 +1,40 @@
-import React from 'react';
-import { Button } from 'antd';
+import React, { useEffect } from 'react';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
+import { dialogsActions } from 'store/actions';
 import { Messages, ChatInput, Status, Sidebar } from 'containers';
 import './Home.scss';
 
-const Home = () => {
+const Home = ({ location: { pathname }, setCurrentDialogId, user }) => {
+  useEffect(() => {
+    const dialogId = pathname.split('/').pop();
+    setCurrentDialogId(dialogId);
+  }, [pathname, setCurrentDialogId]);
+
   return (
     <section className="home">
       <div className="chat">
         <Sidebar />
-        <div className="chat__dialog">
-          <header className="chat__dialog-header">
+        {user && (
+          <div className="chat__dialog">
             <Status />
-          </header>
-          <div className="chat__dialog-messages">
+
             <Messages />
+
+            <div className="chat__dialog-input">
+              <ChatInput />
+            </div>
           </div>
-          <div className="chat__dialog-input">
-            <ChatInput />
-          </div>
-        </div>
+        )}
       </div>
     </section>
   );
 };
 
-export default Home;
+export default withRouter(
+  connect(({ user }) => ({ user: user.data }), dialogsActions)(Home)
+);
 
 /* 
 https://sun9-36.userapi.com/impg/j3gNl81hObaVdkUDnKdrEsHLQ1dGb6y4UO541g/r9v5j5ksw3w.jpg?size=1926x1170&quality=96&sign=4b9bf023224fcb8ebb9f7afadf0a93c8&type=album

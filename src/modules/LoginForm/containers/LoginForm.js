@@ -18,18 +18,19 @@ export default withFormik({
 
     return errors;
   },
-  handleSubmit: (values, { setSubmitting, props }) => {
-    store
-      .dispatch(userActions.fetchUserLogin(values))
-      .then(({ status }) => {
-        if (status === 'success') {
-          props.history.push('/');
-        }
-        setSubmitting(false);
-      })
-      .catch(() => {
-        setSubmitting(false);
-      });
+  handleSubmit: async (values, { setSubmitting, props }) => {
+    try {
+      const { status } = await store.dispatch(
+        userActions.fetchUserLogin(values)
+      );
+
+      if (status === 'success') {
+        props.history.push('/');
+      }
+      setSubmitting(false);
+    } catch (error) {
+      setSubmitting(false);
+    }
   },
   displayName: 'LoginForm',
 })(LoginForm);

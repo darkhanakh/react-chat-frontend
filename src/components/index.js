@@ -13,3 +13,4 @@ export { default as FormField } from './FormField';
 export { default as CheckEmailInfo } from './CheckEmailInfo';
 export { default as MessageAudio } from './MessageAudio';
 export { default as Sidebar } from './Sidebar';
+export { default as UploadFiles } from './Upload';

@@ -11,11 +11,13 @@ function CheckEmailInfo({ location, history }) {
   const info = renderTextInfo(hash, verified);
   useEffect(() => {
     if (hash) {
-      userApi.verifyHash(hash).then(({ data }) => {
+      const fetchData = async () => {
+        const { data } = await userApi.verifyHash(hash);
         if (data.status === 'success') {
           setVerified(true);
         }
-      });
+      };
+      fetchData();
     }
   });
 

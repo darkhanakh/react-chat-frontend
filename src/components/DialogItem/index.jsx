@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
 import { CheckedIcon, Avatar } from 'components';
-import { getMessageTime } from 'utils/helpers';
+import { getMessageTime, renderLastMessage } from 'utils/helpers';
 import './DialogItem.scss';
 
 const DialogItem = ({
@@ -13,32 +13,35 @@ const DialogItem = ({
   isMe,
   currentDialogId,
   lastMessage,
-  onSelectDialog,
+  readed,
+  partner,
+  userId,
 }) => {
   return (
     <React.Fragment>
       <Link to={`/dialog/${_id}`}>
         <div
           className={classNames('dialogs__item', {
-            'dialogs__item--online': lastMessage.user.isOnline,
+            'dialogs__item--online': partner.isOnline,
             'dialogs__item--selected': currentDialogId === _id,
           })}
-          onClick={onSelectDialog.bind(this, _id)}
         >
           <div className="dialogs__item-avatar">
-            <Avatar user={lastMessage.user} />
+            <Avatar user={partner} />
           </div>
           <div className="dialogs__item-info info">
             <div className="info__top">
-              <b className="info__name">{lastMessage.user.fullname}</b>
+              <b className="info__name">{partner.fullname}</b>
               <time className="info__date">
                 {getMessageTime(lastMessage.createdAt)}
               </time>
             </div>
             <div className="info__bottom">
-              <p className="info__text">{lastMessage.text}</p>
+              <p className="info__text">
+                {renderLastMessage(lastMessage, userId)}
+              </p>
 
-              {isMe && <CheckedIcon isMe isReaded={false} />}
+              {isMe && <CheckedIcon isMe={isMe} isReaded={readed} />}
               {unreadMessages > 0 && (
                 <div className="dialogs__item-info-bottom-count">
                   {unreadMessages > 9 ? '+9' : unreadMessages}

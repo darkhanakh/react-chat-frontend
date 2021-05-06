@@ -18,29 +18,32 @@ const Sidebar = ({ user }) => {
 
   const handleChangeInput = text => setInputValue(text);
 
-  const onSearch = value => {
+  const onSearch = async value => {
     setIsLoading(true);
-    userApi
-      .findUser(value)
-      .then(({ data }) => {
-        setUsers(data);
-        setIsLoading(false);
-      })
-      .catch(() => setIsLoading(false));
+    try {
+      const { data } = await userApi.findUser(value);
+
+      setUsers(data);
+      setIsLoading(false);
+    } catch (e) {
+      setIsLoading(false);
+    }
   };
 
   const onSelectUser = userId => {
     setSelectedUserId(userId);
   };
 
-  const onAddDialog = () => {
-    dialogsApi
-      .create({
+  const onAddDialog = async () => {
+    try {
+      await dialogsApi.create({
         partner: selectedUserId,
         text: messageText,
-      })
-      .then(onModalClose)
-      .catch(() => setIsLoading(false));
+      });
+      onModalClose();
+    } catch (e) {
+      setIsLoading(false);
+    }
   };
 
   const onChangeTextArea = e => setMessageText(e.target.value);

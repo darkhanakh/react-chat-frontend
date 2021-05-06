@@ -5,3 +5,6 @@ export { default as getMessageTime } from './getMessageTime';
 export { default as generateAvatarFromHash } from './generateAvatarFromHash';
 export { default as openNotification } from './openNotification';
 export { default as renderTextInfo } from './renderTextInfo';
+export { default as getBase64 } from './getBase64';
+export { default as isAudio } from './isAudio';
+export { default as renderLastMessage } from './renderLastMessage';

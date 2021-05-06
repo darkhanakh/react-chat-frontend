@@ -6,14 +6,7 @@ import { SearchOutlined } from '@ant-design/icons';
 
 import { DialogItem } from 'components';
 
-const Dialogs = ({
-  items,
-  userId,
-  onSearch,
-  inputValue,
-  onSelectDialog,
-  currentDialogId,
-}) => {
+const Dialogs = ({ items, userId, onSearch, inputValue, currentDialogId }) => {
   return (
     <section className="dialogs">
       <div className="dialogs__search">
@@ -29,10 +22,10 @@ const Dialogs = ({
       {items.length ? (
         orderBy(items, ['created_at'], ['desc']).map(item => (
           <DialogItem
-            onSelectDialog={onSelectDialog}
             key={item._id}
             isMe={item.author._id === userId}
             currentDialogId={currentDialogId}
+            userId={userId}
             {...item}
           />
         ))

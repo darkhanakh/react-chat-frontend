@@ -1,8 +1,12 @@
 .chat-input {
-  display: flex;
   align-items: center;
   margin: 20px;
   position: relative;
+
+  & > div:first-of-type {
+    display: flex;
+    align-items: center;
+  }
 
   &__smile-button {
     margin-right: 10px;
@@ -13,6 +17,58 @@
     span.anticon {
       cursor: pointer;
       font-size: 20px;
+    }
+  }
+
+  &__attachments {
+    margin-top: 10px;
+    padding-left: 50px;
+  }
+
+  &__record {
+    $red: #f56b6b;
+    &-status {
+      $self: &;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+      color: $red;
+
+      .stop-recording {
+        margin-left: 5px;
+        i {
+          svg {
+            position: relative;
+            top: 1px;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+
+      #{$self}-bubble {
+        position: relative;
+        margin-right: 5px;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 30px;
+        background: $red;
+        box-shadow: 0 0 5px $red;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 10px;
+          width: 10px;
+          background-color: rgba(245, 107, 107, 0.5);
+          border-radius: 30px;
+          animation: wave-animation 1s ease-in-out infinite;
+        }
+      }
     }
   }
 
@@ -36,5 +92,17 @@
     &:focus {
       box-shadow: none;
     }
+  }
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
   }
 }
